@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :users 
+  resources :books 
+  resources :libraries
+  
+  resources :libraries do 
+    resources :books do 
+      resource :users
+    end
+  end
+
+  root "libraries#index"
 end
